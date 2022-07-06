@@ -1,0 +1,30 @@
+{% extends 'post/base.html' %}
+
+{% block content %}
+    <form method ="post" class="sign_in" >{% csrf_token %}
+        <h1>sign in</h1>
+        <div class="nickname">
+            ID
+            <input type="text" id="" name="nickname" placeholder="Nickname">
+        </div>
+        <div class="email">
+            Email
+            <input type="email" id="" name="email" placeholder="Email">
+        </div>
+        <div class="name">
+            name
+            <input type="text" id="" name="name" placeholder="name">
+        </div>
+        <div class="password1">
+            Password
+            <input type="password" id="" name="password1" placeholder="Password">
+        </div>
+        <div class="password2">
+            Password Check
+            <input type="password" id="" name="password2" placeholder="Password Check">
+        </div>
+        <div>
+            <button type="submit" >Sign In</button>
+        </div>
+    </form>
+{% endblock %}

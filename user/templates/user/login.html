@@ -1,0 +1,29 @@
+{% extends 'post/base.html' %}
+
+{% block content %}
+    <div >
+        <form method="post" class="log_in">{% csrf_token %}
+            <div class="id">
+                <h4>Email</h4>
+                <input type = "text" id="email" name="email" placeholder="Email">
+            </div>
+            <div class="pw">
+                <h4>Password</h4>
+                <input type = "password" id="password" name="password" placeholder="Password">    
+            </div>          
+            <div class="in">
+                <button type="submit" >
+                    log in
+                </botton>
+            </div>
+        </form>
+    </div>
+            
+    <div class="up">
+        <a href="{% url 'user:sign_in' %}" >
+            go to sign up
+        </a>
+
+    </div>        
+
+{% endblock %}

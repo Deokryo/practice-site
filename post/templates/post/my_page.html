@@ -1,0 +1,23 @@
+{% extends 'post/base.html' %}
+    {% block content %}
+    <div>
+        <h2>프로필</h2>
+        <p class="name">
+            {{user.name}}
+        </p>
+        <p>
+            {{user.nickname}}
+        </p>
+        <p>
+            {{user.email}}
+        </p>
+        <p>
+            {{user.prof_img}}
+        </p>
+        <p>
+            {{user.intro}}
+        </p>
+        <a href="{% url 'post:profile_edit' pk=profile.pk %}">변경하기</a>
+        
+    </div>
+    {% endblock %}

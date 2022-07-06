@@ -1,0 +1,56 @@
+{% extends 'post/base.html' %}
+
+{% block content %}
+<!-- post detail -->
+    <div class="post">
+        {% if post.published_date %}
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+        {% endif %}
+        {% if request.user.nickname == post.author %}
+        <a  href ="{% url 'post:post_edit' pk=post.pk %}">post_edit</a>
+        <a href = "{% url 'post:post_delete' pk=post.pk %}">지우기</a>
+        {% endif %}
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.content|linebreaksbr }}</p>
+        <p>좋아요 {{ post.like_count }}개</p>
+
+
+<!--comment-->
+        <h3><p>댓글</p></h3>
+        {% if request.user.is_authenticated %}
+            <form method="post" class = "post-form">{% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">댓글 작성</button>
+            </form>
+        {% else %}
+            <a type = "summit" href="{% url 'user:log_in' %}">[댓글을 작성하려면 로그인하세요.]</a>
+        {% endif %}
+    
+    
+        {% if comments %}
+            <p><b>{{ comments|length }}개의 댓글이 있습니다.</b></p>
+        {% endif %}
+        <ul>
+            {% for comment in comments %}
+            <div>
+                
+                <p method = "post">
+                    {{ comment.user }} : {{ comment.content }} - {{ comment.created_at }} {{ comment.id}}
+                    {% if request.user == comment.user %}
+                
+                    <a href = "{% url 'post:comment_delete' pk=comment.pk a=post.pk%}">삭제</a>
+                    
+                    {% endif %}
+                </p>
+                
+            </div>
+            {% empty %}
+                <p>댓글이 없어요..</p>
+            {% endfor %}
+        </ul>
+
+
+    </div>
+{% endblock %}

@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>덕룡이의 블로그</title>
+    </head>
+        <body>
+            <div class="page-header">
+                <h1><a href="{% url 'post:post_list' %}">김덕룡의 프로그래밍 공부</a></h1>
+                {% if user.is_authenticated %}
+                    <a class="logout" href="{% url 'user:log_out' %}">log out</a>
+                    <a class="user">{{user.nickname}} welcome!</a>
+                    <a class="post-edit" href="{% url 'post:post_new'%}">post new</a>
+                    <a class="my_page" href="{% url 'post:my_page' pk=user.pk %}">마이페이지</a>
+                {% else %}
+                    <a class="login" href="{% url 'user:log_in' %}">log in</a>
+                {% endif %}
+            </div>
+
+            <div class="content-container">
+                <div class="row">
+                    <div>
+                        {% block content %}
+                        {% endblock %}
+                    </div>
+                </div>
+
+            </div>
+        </body>
+</html>
