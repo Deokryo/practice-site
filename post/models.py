@@ -37,7 +37,7 @@ class Comment(models.Model):
         return self.content
 
     class Meta():
-        db_table='Comment'
+        db_table='Comment' 
 
 
 # Create your models here.
